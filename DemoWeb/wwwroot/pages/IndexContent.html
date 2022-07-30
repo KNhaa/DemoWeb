@@ -1,0 +1,22 @@
+﻿<div class="container">
+    <nav class="navbar navbar-light">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search..." ng-model="searchText">
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#!/add"> Add new product</a>
+
+    <div class="row">
+        <div class="col-sm-4" style=" margin-top: 5px" ng-repeat="product in products | filter: searchFilter">
+            <div class="card" style="width: 13rem">
+                <div class="card-body">
+                    <img class="img-thumbnail" src="{{product.image}}" alt="Card image cap">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.price}}</p>
+                    <p class="card-text">{{product.description}}</p>
+                    <a href="#!/edit/{{product.id}}" class="card-link">Edit</a>
+                    <a href="#" class="card-link" ng-click="deleteProduct(product.id)">Delete</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

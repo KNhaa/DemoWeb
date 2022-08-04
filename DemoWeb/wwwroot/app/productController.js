@@ -8,6 +8,7 @@
     productController.$inject = ['$http', '$scope'];
 
     function productController($http, $scope) {
+        $scope.isEditForm = false;
 
         $scope.loadProductList = function () {
             $http({
@@ -47,19 +48,36 @@
         }
 
         $scope.addProduct = function (product) {
-                $http({
-                    method: 'POST',
-                    url: 'api/Product/add',
-                    data: product,
-                    headers: { 'Content-Type': 'application/json' },
-                }).then(function successCallback(response) {
-                    console.log(response);
-                    document.getElementById('myForm').reset();
+           
+            product.uploadFile = $scope.myFile;
+
+            var formData = new FormData();
+            formData.append('name', product.name);
+            formData.append('price', product.price);
+            formData.append('description', product.description);
+            formData.append('uploadFile', product.uploadFile);
+
+            $http({
+                method: 'POST',
+                url: 'api/Product/add',
+                data: formData,
+                enctype: 'multipart/form-data',
+                headers: {
+                    'Content-Type': undefined
+                }
+            }).then(function successCallback(response) {
+                console.log(response);
+                document.getElementById('image').setAttribute('src', null);
+                document.getElementById('myForm').reset();
                 }, function errorCallback(response) {
                     console.log(response);
                 });
         }
+        
+           
+    }
+   
 
     
-    }
+
 })();

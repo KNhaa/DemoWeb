@@ -2,10 +2,11 @@
     <nav class="navbar navbar-light">
         <input class="form-control mr-sm-2" type="search" placeholder="Search..." ng-model="searchText">
     </nav>
-    <a class="btn btn-primary btn-sm" href="#!/add"> Add new product</a>
+    <a class="btn btn-primary btn-sm " href="#!/add" style="margin-left:10px"> Add new product</a>
+
 
     <div class="row">
-        <div class="col-sm-4" style=" margin-top: 5px" ng-repeat="product in products | filter: searchFilter">
+        <div class="col-sm-4" style=" margin-top: 5px" dir-paginate="product in products | filter: searchFilter | itemsPerPage: 6 ">
             <div class="card" style="width: 13rem">
                 <div class="card-body">
                     <img class="img-thumbnail" src="{{product.image}}" alt="Card image cap">
@@ -19,4 +20,11 @@
         </div>
 
     </div>
+
+    <div style="margin:10px">
+        <dir-pagination-controls boundary-links="true"
+                                 direction-links="true">
+        </dir-pagination-controls>
+    </div>
+
 </div>

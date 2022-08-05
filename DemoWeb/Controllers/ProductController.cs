@@ -20,11 +20,6 @@ namespace DemoWeb.Controllers
         //private readonly ProductService productService;
         private readonly MyDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-
-        //public ProductController(ProductService _productService)
-        //{
-        //    productService = _productService;
-        //}
         public ProductController(MyDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
@@ -34,16 +29,14 @@ namespace DemoWeb.Controllers
         [HttpGet]
         public List<Product> GetAll()
         {
-           // var productList = productService.getAll();
             return _context.Products.ToList(); ;
         }
 
-        // GET: ProductController/Details/5
         [HttpGet("details/{id:int}")]
         public Product GetById(int id)
         {
-           var productItem = _context.Products.Where(x => x.Id == id).FirstOrDefault();
-            return productItem; 
+            var productItem = _context.Products.Where(x => x.Id == id).FirstOrDefault();
+            return productItem;
         }
 
         [HttpPost]
@@ -72,15 +65,13 @@ namespace DemoWeb.Controllers
                     product.UploadFile.CopyTo(fileStream);
                 }
             }
-           
         }
-        
-       
+
         [HttpPost]
         [Route("update/")]
         public void Update([FromForm] Product product)
         {
-            
+
             SaveImage(product);
             _context.Attach(product);
             _context.Entry(product).State = EntityState.Modified;
@@ -96,5 +87,5 @@ namespace DemoWeb.Controllers
             _context.SaveChanges();
         }
 
-    }   
+    }
 }

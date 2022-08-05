@@ -5,7 +5,6 @@
                 .when('/', {
                     templateUrl: 'pages/IndexContent.html',
                     controller: 'productController'
-
                 })
                 .when('/add', {
                     templateUrl: 'pages/AddProduct.html',
@@ -15,7 +14,6 @@
                     templateUrl: 'pages/AddProduct.html',
                     controller: 'addEditProductController'
                 })
-
                 .otherwise({ redirectTo: '/' });
         }]);
 

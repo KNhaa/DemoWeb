@@ -22,4 +22,8 @@
     <None Include="wwwroot\pages\LeftMenu.html" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploadFile\" />
+  </ItemGroup>
+
 </Project>

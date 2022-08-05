@@ -2,29 +2,24 @@
     <nav class="navbar navbar-light">
         <input class="form-control mr-sm-2" type="search" placeholder="Search..." ng-model="searchText">
     </nav>
-    <a class="btn btn-primary btn-sm " href="#!/add" style="margin-left:10px"> Add new product</a>
-
-
+    <a class="btn btn-primary " href="#!/add" style="margin:10px"> Add new product</a>
     <div class="row">
         <div class="col-sm-4" style=" margin-top: 5px" dir-paginate="product in products | filter: searchFilter | itemsPerPage: 6 ">
-            <div class="card" style="width: 13rem">
+            <div class="card" style="width: 15rem">
                 <div class="card-body">
                     <img class="img-thumbnail" src="{{product.image}}" alt="Card image cap">
-                    <h5 class="card-title">{{product.name}}</h5>
-                    <p class="card-text">{{product.price}}</p>
-                    <p class="card-text">{{product.description}}</p>
-                    <a href="#!/edit/{{product.id}}" class="card-link">Edit</a>
-                    <a href="#" class="card-link" ng-click="deleteProduct(product.id)">Delete</a>
+                    <h5 class="card-title" style="margin-top:10px">Name: {{product.name}}</h5>
+                    <p class="card-text">Price: {{product.price}}</p>
+                    <p class="card-text">Description: {{product.description}}</p>
+                    <a href="#!/edit/{{product.id}}" class="btn btn-outline-primary">Edit</a>
+                    <a href="#" class="btn btn-outline-danger" ng-click="deleteProduct(product.id)">Delete</a>
                 </div>
             </div>
         </div>
-
     </div>
-
-    <div style="margin:10px">
+    <div style="margin:20px">
         <dir-pagination-controls boundary-links="true"
                                  direction-links="true">
         </dir-pagination-controls>
     </div>
-
 </div>

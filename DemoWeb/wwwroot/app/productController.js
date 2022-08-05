@@ -1,6 +1,5 @@
 ﻿(function () {
     'use strict';
-
     angular
         .module('MyApp')
         .controller('productController', productController);
@@ -9,7 +8,6 @@
 
     function productController($http, $scope) {
         $scope.isEditForm = false;
-
         $scope.loadProductList = function () {
             $http({
                 method: 'GET',
@@ -23,7 +21,6 @@
         }
         $scope.loadProductList();
 
-        
         $scope.deleteProduct = function (id) {
             var isConfirm = confirm('Delete it?');
             if (isConfirm) {
@@ -33,30 +30,26 @@
                 }).then(function successCallback(response) {
                     console.log(response);
                     $scope.loadProductList();
-                    //$scope.products = response.data;
                 }, function errorCallback(response) {
                     console.log(response);
                 });
             }
         }
-        
+
         $scope.searchText = "";
         $scope.searchFilter = function (item) {
             // Add your own search logic here
-            return item.name.toLowerCase().includes($scope.searchText.toLowerCase())               
+            return item.name.toLowerCase().includes($scope.searchText.toLowerCase())
                 || item.description.toLowerCase().includes($scope.searchText.toLowerCase());
         }
 
         $scope.addProduct = function (product) {
-           
             product.uploadFile = $scope.myFile;
-
             var formData = new FormData();
             formData.append('name', product.name);
             formData.append('price', product.price);
             formData.append('description', product.description);
             formData.append('uploadFile', product.uploadFile);
-
             $http({
                 method: 'POST',
                 url: 'api/Product/add',
@@ -69,15 +62,9 @@
                 console.log(response);
                 document.getElementById('image').setAttribute('src', null);
                 document.getElementById('myForm').reset();
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
+            }, function errorCallback(response) {
+                console.log(response);
+            });
         }
-        
-           
     }
-   
-
-    
-
 })();
